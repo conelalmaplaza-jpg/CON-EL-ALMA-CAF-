@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Con el Alma - Café & Confitería</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset y variables */
+    :root{
+      --bg-cream: #fff8f0;
+      --brown-dark: #4e342e;
+      --brown-medium: #6d4c41;
+      --accent: #a1887f;
+      --card: #fffaf0;
+      --glass: rgba(255,248,240,0.86);
+      --max-width: 1100px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Roboto', sans-serif;
+      color:var(--brown-dark);
+      background:
+        linear-gradient(180deg, rgba(255,250,245,0.95), rgba(255,250,245,0.95)),
+        url('https://i.ibb.co/F3cXtWn/vintage-bg.jpg') repeat;
+      background-size: cover;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      padding-bottom:80px;
+    }
+
+    /* Encabezado / Nav */
+    header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter: blur(4px);
+      background: var(--glass);
+      border-bottom: 2px solid rgba(161,136,127,0.3);
+    }
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand img{
+      width:78px;
+      height:78px;
+      object-fit:contain;
+      border-radius:12px;
+      background:transparent;
+      padding:6px;
+    }
+    .brand h1{
+      font-family: 'Great Vibes', cursive;
+      font-size:28px;
+      color:var(--brown-dark);
+      line-height:1;
+    }
+    .brand p{
+      font-size:12px;
+      color:var(--brown-medium);
+      margin-top:2px;
+    }
+
+    nav{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    nav a{
+      text-decoration:none;
+      color:var(--brown-medium);
+      font-weight:500;
+      padding:8px 10px;
+      border-radius:8px;
+      transition:all .18s;
+      font-size:14px;
+    }
+    nav a:hover{ background: rgba(161,136,127,0.08); color:var(--brown-dark) }
+
+    /* Mobile toggle */
+    .menu-toggle{
+      display:none;
+      background:transparent;
+      border:1px solid rgba(78,52,46,0.08);
+      padding:8px;
+      border-radius:8px;
+    }
+
+    /* Hero */
+    .hero{
+      max-width:var(--max-width);
+      margin:24px auto;
+      padding:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,250,245,0.9));
+      border-radius:14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      display:flex;
+      gap:22px;
+      align-items:center;
+    }
+    .hero-left{
+      flex:1 1 420px;
+    }
+    .hero-left h2{
+      font-family:'Great Vibes', cursive;
+      font-size:48px;
+      color:var(--brown-dark);
+      margin-bottom:6px;
+    }
+    .hero-left p{ color:var(--brown-medium); margin-bottom:12px; font-size:15px }
+    .hero-cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      background:var(--brown-dark);
+      color: #fff;
+      padding:10px 16px;
+      border-radius:9px;
+      text-decoration:none;
+      font-weight:600;
+      box-shadow: 0 6px 14px rgba(78,52,46,0.12);
+    }
+    .btn.alt{
+      background:transparent;
+      color:var(--brown-dark);
+      border:1px solid rgba(78,52,46,0.08);
+    }
+
+    .hero-right{
+      width:300px;
+      display:flex;
+      justify-content:center;
+    }
+    .hero-right .card{
+      width:260px;
+      background:var(--card);
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(161,136,127,0.12);
+      text-align:center;
+    }
+    .hero-right .card h4{font-weight:700;margin-bottom:6px;color:var(--brown-dark)}
+    .hero-right .card p{font-size:13px;color:var(--brown-medium)}
+
+    /* Secciones */
+    main{
+      max-width:var(--max-width);
+      margin:22px auto;
+      padding:0 18px;
+    }
+    section{
+      margin:20px 0 36px;
+      background: rgba(255,255,255,0.85);
+      border-radius:12px;
+      padding:14px;
+      border:1px solid rgba(161,136,127,0.06);
+    }
+    section h3{
+      font-family:'Great Vibes', cursive;
+      font-size:28px;
+      color:var(--brown-dark);
+      text-align:center;
+      margin-bottom:12px;
+    }
+
+    /* Lista de items (tarjeta estilo) */
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:12px;
+    }
+    .menu-card{
+      background:var(--card);
+      border-radius:10px;
+      padding:12px;
+      border:1px solid rgba(215,204,200,0.7);
+      transition:transform .18s, box-shadow .18s;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .menu-card:hover{ transform:translateY(-6px); box-shadow:0 10px 24px rgba(0,0,0,0.07) }
+    .menu-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:6px 0;
+      border-bottom:1px dashed rgba(161,136,127,0.06);
+      font-size:15px;
+    }
+    .menu-item:last-child{ border-bottom: none }
+    .menu-item .name{ color:var(--brown-dark) }
+    .menu-item .price{ font-weight:700; color:var(--brown-medium) }
+
+    /* Footer */
+    footer{
+      max-width:var(--max-width);
+      margin:20px auto 60px;
+      padding:16px;
+      text-align:center;
+      color:var(--brown-medium);
+      font-size:14px;
+    }
+
+    /* WhatsApp flotante */
+    .whatsapp{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:#25D366;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:28px;
+      text-decoration:none;
+      box-shadow:0 10px 28px rgba(37,211,102,0.18);
+      z-index:80;
+    }
+
+    /* Responsive */
+    @media (max-width:880px){
+      .hero{flex-direction:column; gap:12px; align-items:flex-start}
+      .hero-right{width:100%}
+      nav{display:none}
+      .menu-toggle{display:inline-block}
+      .brand h1{font-size:22px}
+    }
+
+    /* Smooth scroll highlight */
+    :target{ outline: 3px solid rgba(161,136,127,0.12); border-radius:8px; padding:6px; }
+
+    /* Small helpers */
+    .small{font-size:13px;color:var(--brown-medium)}
+    .inline { display:inline-flex; gap:8px; align-items:center }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <!-- Guardá tu logo como logo.png en la misma carpeta -->
+        <img src="logo.png" alt="Con el Alma - logo" onerror="this.style.display='none'"/>
+        <div>
+          <h1>Con el Alma</h1>
+          <p class="small">Café & Confitería • conelalmacafe</p>
+        </div>
+      </div>
+
+      <!-- Nav principal -->
+      <nav id="mainNav" aria-label="Navegación principal">
+        <a href="#cafeteria">Cafetería</a>
+        <a href="#especiales">Especiales</a>
+        <a href="#salados">Salados</a>
+        <a href="#burgers">Burgers</a>
+        <a href="#pizzas">Pizzas</a>
+        <a href="#bebidas">Bebidas</a>
+        <a href="#tragos">Tragos</a>
+        <a href="#dulces">Dulces</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <button class="menu-toggle" aria-controls="mainNav" aria-expanded="false" onclick="toggleNav()">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero" role="banner">
+    <div class="hero-left">
+      <h2>Con el Alma</h2>
+      <p>Un lugar para encontrarte con sabores cálidos y recetas hechas con cariño. Menú amplio: cafetería, salados, pizzas, burgers y más.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#cafeteria">Ver Menú</a>
+        <a class="btn alt" href="#contacto">Contacto</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="card">
+        <h4>Pedidos por WhatsApp</h4>
+        <p class="small">Envianos tu pedido y lo preparamos con ❤️</p>
+        <p style="margin-top:8px"><strong>+54 3751 668650</strong></p>
+        <a class="btn" style="margin-top:10px; display:inline-block" href="https://wa.me/543751668650" target="_blank" rel="noopener">Abrir WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- CAFETERÍA -->
+    <section id="cafeteria" aria-labelledby="cafeteriaTitle">
+      <h3 id="cafeteriaTitle">Cafetería</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Espresso (café solo)</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Ristreto (café solo)</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Doble</div><div class="price">$3.000</div></div>
+          <div class="menu-item"><div class="name">Americano (rebajado con agua)</div><div class="price">$3.000</div></div>
+          <div class="menu-item"><div class="name">Café con leche</div><div class="price">$3.000</div></div>
+          <div class="menu-item"><div class="name">Cortado</div><div class="price">$3.000</div></div>
+          <div class="menu-item"><div class="name">Lágrima (poco café)</div><div class="price">$3.000</div></div>
+          <div class="menu-item"><div class="name">Chocolatada</div><div class="price">$4.500</div></div>
+        </div>
+
+        <div class="menu-card">
+          <h4 style="font-weight:700;color:var(--brown-medium)">Cafetería Especial</h4>
+          <div class="menu-item"><div class="name">Espresso panna (con crema)</div><div class="price">$3.000</div></div>
+          <div class="menu-item"><div class="name">Café Moka (con chocolate rallado)</div><div class="price">$3.000</div></div>
+          <div class="menu-item"><div class="name">Capuchino (canela y chocolate)</div><div class="price">$3.500</div></div>
+          <div class="menu-item"><div class="name">Capuchino Italiano (crema, canela y chocolate)</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Café vienes (crema, chocolate, canela)</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Submarino</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Café Irlandés (whisky, azúcar y crema)</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Café carajillo (whisky y cáscara de naranja)</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Mocachino (leche y chocolate)</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Café caramelo (caramelo, leche y crema)</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Café Azteca (helado y chocolate)</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Café con el alma (leche condensada, crema y salsa de chocolate)</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Machiato baileys (leche condensada, leche y crema)</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Café amarula (Amarula, leche condensada, leche)</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Café bombón (crema, chocolate, leche condensada y dulce de leche)</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Yogurt griego (con granola y fruta)</div><div class="price">$5.000</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAPPES / INFUSIONES / LICUADOS -->
+    <section id="especiales" aria-labelledby="especialesTitle">
+      <h3 id="especialesTitle">Frappes · Infusiones · Licuados</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Ice capuchino (helado, crema, chocolate y canela)</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Cremuccino (dulce de leche, vainilla, chocolate)</div><div class="price">$5.500</div></div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Té (puede ser con leche)</div><div class="price">$1.500</div></div>
+          <div class="menu-item"><div class="name">Té saborizado</div><div class="price">$1.500</div></div>
+          <div class="menu-item"><div class="name">Matecocido (puede ser con leche)</div><div class="price">$1.500</div></div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Licuado (con leche o con agua)</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Licuado mixto (2 frutas)</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Jarra de Licuado</div><div class="price">$13.500</div></div>
+          <div class="menu-item"><div class="name">Ensalada de frutas</div><div class="price">-</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALADOS -->
+    <section id="salados" aria-labelledby="saladosTitle">
+      <h3 id="saladosTitle">Salados · Regional</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Chipitas</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Tostadas de pan</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Tostadas con huevo</div><div class="price">$3.500</div></div>
+          <div class="menu-item"><div class="name">Medialunas jyq</div><div class="price">$2.000</div></div>
+          <div class="menu-item"><div class="name">Sandwich Siabatta</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Sandwich tostado (jamón y queso)</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Sandwich especial (atún, pepinitos, zanahoria, queso crema)</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Sandwich de pollo</div><div class="price">$6.000</div></div>
+          <div class="menu-item"><div class="name">Tostado pan lactal (jamón y queso)</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Tostado napolitano</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Sandwich miga triple</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Focaccia (jamón crudo, queso, tomate cherry, rúcula)</div><div class="price">$6.000</div></div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Mbeyú tradicional</div><div class="price">$4.500</div></div>
+          <div class="menu-item"><div class="name">Mbeyú relleno</div><div class="price">$5.500</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BURGERS -->
+    <section id="burgers" aria-labelledby="burgersTitle">
+      <h3 id="burgersTitle">Burgers y Sandwiches (Platos)</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Lomo al plato</div><div class="price">$12.000</div></div>
+          <div class="menu-item"><div class="name">Sandwich de lomo</div><div class="price">$13.000</div></div>
+          <div class="menu-item"><div class="name">Napo al plato</div><div class="price">$12.000</div></div>
+          <div class="menu-item"><div class="name">Sandwich de mila</div><div class="price">$13.000</div></div>
+          <div class="menu-item"><div class="name">Hamburguesa simple</div><div class="price">$8.500</div></div>
+          <div class="menu-item"><div class="name">Hamburguesa completa</div><div class="price">$10.000</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIZZAS -->
+    <section id="pizzas" aria-labelledby="pizzasTitle">
+      <h3 id="pizzasTitle">Pizzas</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Muzzarella</div><div class="price">$12.000</div></div>
+          <div class="menu-item"><div class="name">Napolitana</div><div class="price">$13.000</div></div>
+          <div class="menu-item"><div class="name">Jamón y morrón</div><div class="price">$14.000</div></div>
+          <div class="menu-item"><div class="name">Fugazzeta</div><div class="price">$13.000</div></div>
+          <div class="menu-item"><div class="name">Rúcula y jamón</div><div class="price">$13.000</div></div>
+          <div class="menu-item"><div class="name">Cuatro quesos</div><div class="price">$15.000</div></div>
+          <div class="menu-item"><div class="name">Calabresa</div><div class="price">$15.000</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAPAS Y ENSALADAS -->
+    <section id="papas" aria-labelledby="papasTitle">
+      <h3 id="papasTitle">Papas · Ensaladas</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Papas rústicas</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Rústicas gratinadas</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Papas fritas bastón</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Papas fritas bastón gratinadas</div><div class="price">$5.000</div></div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Pollo crocante (ensalada)</div><div class="price">$6.800</div></div>
+          <div class="menu-item"><div class="name">Mixta (ensalada)</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">César (ensalada)</div><div class="price">$6.800</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEBIDAS Y TRAGOS -->
+    <section id="bebidas" aria-labelledby="bebidasTitle">
+      <h3 id="bebidasTitle">Bebidas sin alcohol · Jugos · Cervezas</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Agua sin gas</div><div class="price">$2.000</div></div>
+          <div class="menu-item"><div class="name">Agua con gas</div><div class="price">$2.000</div></div>
+          <div class="menu-item"><div class="name">Pepsi ×500 ml</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Seven UP ×500 ml</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Mirinda ×500 ml</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Paso de los toros ×500 ml</div><div class="price">$2.500</div></div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Naranja exprimida</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Limón</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Pomelo</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Jarra de jugo</div><div class="price">$9.000</div></div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Stella 1L</div><div class="price">$7.800</div></div>
+          <div class="menu-item"><div class="name">Stella lata</div><div class="price">$4.800</div></div>
+          <div class="menu-item"><div class="name">Brahma 1L</div><div class="price">$4.700</div></div>
+          <div class="menu-item"><div class="name">Brahma lata</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Quilmes 1L</div><div class="price">$4.700</div></div>
+          <div class="menu-item"><div class="name">Quilmes lata</div><div class="price">$2.500</div></div>
+          <div class="menu-item"><div class="name">Corona 330cc</div><div class="price">$4.000</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tragos" aria-labelledby="tragosTitle">
+      <h3 id="tragosTitle">Tragos y Cocktails</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Caipirinha</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Caipiroska (maracuyá o frutos rojos)</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Gin tonic clásico</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Gin especial (consultar sabores)</div><div class="price">$5.500</div></div>
+          <div class="menu-item"><div class="name">Campari orange</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Cuba libre</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Fresh Odyssey</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Gin daisy</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Tropical Energy</div><div class="price">$4.000</div></div>
+          <div class="menu-item"><div class="name">Aperol spritz</div><div class="price">$5.000</div></div>
+          <div class="menu-item"><div class="name">Fernet con coca</div><div class="price">$5.000</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DULCES / NUEVOS -->
+    <section id="dulces" aria-labelledby="dulcesTitle">
+      <h3 id="dulcesTitle">Dulces · Nuevos Productos</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-item"><div class="name">Medialuna</div><div class="price">$1.000</div></div>
+          <div class="menu-item"><div class="name">Sacramento (dulce de leche)</div><div class="price">$1.000</div></div>
+          <div class="menu-item"><div class="name">Alfajores</div><div class="price">$1.500</div></div>
+          <div class="menu-item"><div class="name">Cheesecake (consultar disponibilidad)</div><div class="price">$8.000</div></div>
+          <div class="menu-item"><div class="name">Tarta (consultar disponibilidad)</div><div class="price">$8.000</div></div>
+          <div class="menu-item"><div class="name">Torta (consultar disponibilidad)</div><div class="price">$8.000</div></div>
+          <div class="menu-item"><div class="name">Croissant relleno dulce (Nutella, crema, fruta)</div><div class="price">$3.500</div></div>
+          <div class="menu-item"><div class="name">Croissant relleno salado (jamón crudo, queso, rúcula)</div><div class="price">$3.500</div></div>
+          <div class="menu-item"><div class="name">Cookies</div><div class="price">$2.000</div></div>
+          <div class="menu-item"><div class="name">Pancakes (avena, frutos rojos o bananas)</div><div class="price">$3.500</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" aria-labelledby="contactoTitle">
+      <h3 id="contactoTitle">Contacto</h3>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:center;padding:8px 20px">
+        <p class="small inline"><strong>WhatsApp:</strong>&nbsp;<a href="https://wa.me/543751668650" target="_blank" rel="noopener">+54 3751 668650</a></p>
+        <p class="small inline"><strong>Instagram:</strong>&nbsp;<a href="https://instagram.com/conelalmacafe" target="_blank" rel="noopener">@conelalmacafe</a></p>
+        <p class="small">Si querés que prepare un PDF con el menú para impresión o un archivo listo para Instagram (post y story), te lo puedo generar.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Con el Alma • Café & Confitería — Hecho con ♥
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a class="whatsapp" href="https://wa.me/543751668650" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">💬</a>
+
+  <script>
+    // año en footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile nav toggle
+    function toggleNav(){
+      const nav = document.querySelector('nav');
+      const btn = document.querySelector('.menu-toggle');
+      if(nav.style.display === 'flex'){
+        nav.style.display = '';
+        btn.setAttribute('aria-expanded','false');
+      }else{
+        nav.style.display = 'flex';
+        btn.setAttribute('aria-expanded','true');
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.right = '18px';
+        nav.style.top = '78px';
+        nav.style.background = 'var(--glass)';
+        nav.style.padding = '12px';
+        nav.style.borderRadius = '10px';
+        nav.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
+      }
+    }
+
+    // smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+          // close nav on mobile if open
+          if(window.innerWidth <= 880){
+            const nav = document.querySelector('nav');
+            nav.style.display = '';
+            document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
